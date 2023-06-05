@@ -1,0 +1,167 @@
+ 
+<SOAP-ENV:Envelope
+	xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+	<SOAP-ENV:Header />
+	<SOAP-ENV:Body>
+		<OTA_ResRetrieveRS
+			xmlns="http://www.opentravel.org/OTA/2003/05" TimeStamp="2019-06-18T11:45:41+07:00" Version="1.0">
+			<Success />
+			<ReservationsList>
+				<HotelReservation CreateDateTime="2019-06-17 23:40:07" ResStatus="Cancel">
+					<POS>
+						<Source>
+							<RequestorID ID="cakrasoft" Type="22" />
+							<BookingChannel Primary="true" Type="7">
+								<CompanyName Code="BNL">BOOKANDLINK</CompanyName>
+							</BookingChannel>
+						</Source>
+						<Source>
+							<BookingChannel Primary="false" Type="7">
+								<CompanyName>BOOKANDLINK</CompanyName>
+							</BookingChannel>
+						</Source>
+					</POS>
+					<UniqueID ID="822914" Type="14" />
+					<UniqueID ID="822914" ID_Context="MESSAGE_UNIQUE_ID" Type="16" />
+					<RoomStays>
+						<RoomStay>
+							<RoomTypes>
+								<RoomType RoomType="test room2" RoomTypeCode="11112">
+									<RoomDescription>
+										<Text>test room2</Text>
+									</RoomDescription>
+								</RoomType>
+							</RoomTypes>
+							<RatePlans>
+								<RatePlan EffectiveDate="2019-08-08" ExpireDate="2019-08-11" RatePlanCode="2222" />
+							</RatePlans>
+							<RoomRates>
+								<RoomRate NumberOfUnits="1" RatePlanCode="2222" RoomTypeCode="1111">
+									<Rates>
+										<Rate EffectiveDate="2019-08-08" ExpireDate="2019-08-09" RateTimeUnit="Day" UnitMultiplier="1">
+											<Base AmountAfterTax="685000.00" CurrencyCode="IDR" />
+											<Total AmountAfterTax="685000.00" CurrencyCode="IDR" />
+										</Rate>
+										<Rate EffectiveDate="2019-08-09" ExpireDate="2019-08-10" RateTimeUnit="Day" UnitMultiplier="1">
+											<Base AmountAfterTax="685000.00" CurrencyCode="IDR" />
+											<Total AmountAfterTax="685000.00" CurrencyCode="IDR" />
+										</Rate>
+										<Rate EffectiveDate="2019-08-10" ExpireDate="2019-08-11" RateTimeUnit="Day" UnitMultiplier="1">
+											<Base AmountAfterTax="685000.00" CurrencyCode="IDR" />
+											<Total AmountAfterTax="685000.00" CurrencyCode="IDR" />
+										</Rate>
+									</Rates>
+								</RoomRate>
+							</RoomRates>
+							<GuestCounts>
+								<GuestCount AgeQualifyingCode="10" Count="1" />
+								<GuestCount AgeQualifyingCode="8" Count="0" />
+							</GuestCounts>
+							<TimeSpan End="2019-08-11" Start="2019-08-08" />
+							<Total AmountAfterTax="2568775.00" CurrencyCode="IDR" />
+							<BasicPropertyInfo HotelCode="123567" />
+						</RoomStay>
+					</RoomStays>
+					<ResGuests>
+						<ResGuest ArrivalTime="00:02" PrimaryIndicator="true" ResGuestRPH="1">
+							<Profiles>
+								<ProfileInfo>
+									<Profile ProfileType="1">
+										<Customer>
+											<PersonName>
+												<GivenName>CIAH 1111</GivenName>
+												<Surname>CUO</Surname>
+											</PersonName>
+											<Telephone PhoneNumber="0983" />
+											<Email>chhh@bookandlink.com</Email>
+											<Address>
+												<AddressLine>jln marlboro no 40</AddressLine>
+												<CityName>denpasar</CityName>
+												<PostalCode>N/A</PostalCode>
+												<StateProv>BALI</StateProv>
+												<CountryName>Antarctica</CountryName>
+												<CompanyName>BOOKANDLINK</CompanyName>
+											</Address>
+										</Customer>
+									</Profile>
+								</ProfileInfo>
+							</Profiles>
+						</ResGuest>
+            	<ResGuest ArrivalTime="00:00" PrimaryIndicator="true" ResGuestRPH="2">
+							<Profiles>
+								<ProfileInfo>
+									<Profile ProfileType="1">
+										<Customer>
+											<PersonName>
+												<GivenName>PHILILPPE</GivenName>
+												<Surname>RAUNET</Surname>
+											</PersonName>
+											<Telephone PhoneNumber="098" />
+											<Email>philippe@bookandlink.com</Email>
+											<Address>
+												<AddressLine>jln marlboro no 40</AddressLine>
+												<CityName>denpasar</CityName>
+												<PostalCode>N/A</PostalCode>
+												<StateProv>BALI</StateProv>
+												<CountryName>Antarctica</CountryName>
+												<CompanyName>BOOKANDLINK</CompanyName>
+											</Address>
+										</Customer>
+									</Profile>
+								</ProfileInfo>
+							</Profiles>
+						</ResGuest>
+					</ResGuests>
+					<ResGlobalInfo>
+						<Guarantee>
+							<GuaranteesAccepted>
+								<GuaranteeAccepted>
+									<PaymentCard CardCode="N/A" CardNumber="N/A" CardType="N/A" ExpireDate="N/A">
+										<CardHolderName>N/A</CardHolderName>
+									</PaymentCard>
+								</GuaranteeAccepted>
+							</GuaranteesAccepted>
+						</Guarantee>
+						<DepositPayments>
+							<GuaranteePayment>
+								<AmountPercent Amount="2568775.00" CurrencyCode="IDR" TaxInclusive="true" />
+							</GuaranteePayment>
+						</DepositPayments>
+						<Total AmountAfterTax="2568775.00" CurrencyCode="IDR" />
+						<HotelReservationIDs>
+							<HotelReservationID ResID_Type="14" ResID_Value="822914" />
+						</HotelReservationIDs>
+						<Profiles>
+							<ProfileInfo>
+								<Profile ProfileType="1">
+									<Customer>
+										<PersonName>
+											<GivenName>PHILILPPE 1</GivenName>
+											<Surname>RAUNET</Surname>
+										</PersonName>
+										<Telephone PhoneNumber="098" />
+										<Email>philippe@bookandlink.com</Email>
+										<Address>
+											<AddressLine>jln marlboro no 40</AddressLine>
+											<CityName>denpasar</CityName>
+											<PostalCode>N/A</PostalCode>
+											<StateProv>BALI</StateProv>
+											<CountryName>Antarctica</CountryName>
+											<CompanyName>BOOKANDLINK</CompanyName>
+										</Address>
+									</Customer>
+								</Profile>
+							</ProfileInfo>
+						</Profiles>
+						<Comments>
+							<Comment>
+								<Text>N/A</Text>
+							</Comment>
+						</Comments>
+					</ResGlobalInfo>
+					<BasicPropertyInfo HotelCode="123567" />
+				</HotelReservation>
+			</ReservationsList>
+		</OTA_ResRetrieveRS>
+	</SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
