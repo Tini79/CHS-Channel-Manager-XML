@@ -2,7 +2,6 @@ package main
 
 import (
 	GlobalQuery "channel-manager/global_query"
-
 )
 
 func main() {

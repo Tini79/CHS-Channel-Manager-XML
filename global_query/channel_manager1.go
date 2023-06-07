@@ -19,22 +19,30 @@ type MyQReservationStruct struct {
 	OTAID       string `json:"ota_id"`
 	BookingCode string `json:"booking_code"`
 }
-type ReservationStatusStruct struct {
+type DataReservationStatusStruct struct {
 	ReservationNumber int    `json:"ReservationNumber"`
 	StatusCode        string `json:"StatusCode"`
 	CancelledBy       string `json:"CancelledBy"`
 	CancelReason      string `json:"CancelReason"`
 }
-type ReservationIsCMConfirmedStruct struct {
+type DataReservationIsCMConfirmedStruct struct {
 	BookingCode string `json:"BookingCode"`
 	OTAID       string `json:"OTAID"`
 	StatusCode  string `json:"StatusCode"`
 	False       string `json:"False"`
 }
 
-var ReservationStatus ReservationStatusStruct
-var ReservationIsCMConfirmed ReservationIsCMConfirmedStruct
+var DataReservationStatus DataReservationStatusStruct
+var DataReservationIsCMConfirmed DataReservationIsCMConfirmedStruct
 var IP = "http://192.168.1.64:9000/"
+
+func GetHeader(req *http.Request) *http.Request {
+	req.Header.Set("Content-Type", "application/json")
+	// TODO Token
+	req.Header.Set("Token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODc1MDM2MzAsInJlZnJlc2giOmZhbHNlLCJ1c2VyIjoiU1lTVEVNIn0.fqA0wHYfmtxhfD13M7zBXOxVan0OxeWY0elzAvGKTxk")
+
+	return req
+}
 
 func ChannelManager1ReadXML() {
 	type QueryParamStruct struct {
@@ -77,7 +85,7 @@ func ChannelManager1ReadXML() {
 	var QueryParam QueryParamStruct
 
 	doc := etree.NewDocument()
-	if err := doc.ReadFromFile("./book.xml"); err != nil {
+	if err := doc.ReadFromFile("./file_xml/book.xml"); err != nil {
 		fmt.Println(err.Error())
 	}
 
@@ -88,7 +96,6 @@ func ChannelManager1ReadXML() {
 	DataInput.BookingCode = ""
 	DataInput.OTAID = ""
 
-	// kirim hotel code juga
 	QueryParam.HotelCode = root.FindElement("//RoomStay/BasicPropertyInfo").SelectAttr("HotelCode").Value
 	ResStatus := root.FindElement("//HotelReservation").SelectAttr("ResStatus").Value
 
@@ -104,28 +111,18 @@ func ChannelManager1ReadXML() {
 		}
 	}
 
-	// Room Stay
-	// IsNoRPH := true
-
-	// Room Rate
 	RoomRate := root.FindElement("//RoomRate")
-	// Room Rate Code
 	DataInput.RoomRateCode = RoomRate.SelectAttr("RatePlanCode").Value
-	// Room Type Code
 	DataInput.RoomTypeCode = RoomRate.SelectAttr("RoomTypeCode").Value
-	// Rate Amount After Tax
 	DataInput.RoomRateAmountStr = root.FindElement("//Rate/Total").SelectAttr("AmountAfterTax").Value
 
 	GuestCount := root.FindElements("//GuestCounts/GuestCount")
 	for _, count := range GuestCount {
 		if count.SelectAttr("AgeQualifyingCode").Value == "10" {
-			// Adult
 			DataInput.AdultStr = count.SelectAttr("Count").Value
 		} else if count.SelectAttr("AgeQualifyingCode").Value == "8" {
-			// Child
 			DataInput.ChildStr = count.SelectAttr("Count").Value
 		} else if count.SelectAttr("AgeQualifyingCode").Value == "7" {
-			// Infant
 			DataInput.InfantStr = count.SelectAttr("Count").Value
 		}
 	}
@@ -136,7 +133,6 @@ func ChannelManager1ReadXML() {
 	if err != nil {
 		fmt.Println(err)
 	}
-
 	DataInput.ArrivalDateStr = ArrivalDateStr
 
 	DepartureDateStr, err := time.Parse(layout, root.FindElement("//TimeSpan").SelectAttr("End").Value)
@@ -309,33 +305,24 @@ func ChannelManager1ReadXML() {
 			if len(MyQReservation) != 0 {
 				for _, reservation := range MyQReservation {
 					// UpdateReservationStatus
-					ReservationStatus.ReservationNumber = reservation.Number
-					ReservationStatus.StatusCode = GlobalVar.ReservationStatus.Canceled
-					ReservationStatus.CancelledBy = ""
-					ReservationStatus.CancelReason = "Cancel by Channel Manager"
+					DataReservationStatus.ReservationNumber = reservation.Number
+					DataReservationStatus.StatusCode = GlobalVar.ReservationStatus.Canceled
+					DataReservationStatus.CancelledBy = ""
+					DataReservationStatus.CancelReason = "Cancel by Channel Manager"
 					// UpdateReservationIsCMConfirmed
-					ReservationIsCMConfirmed.BookingCode = reservation.BookingCode
-					ReservationIsCMConfirmed.OTAID = reservation.OTAID
-					ReservationIsCMConfirmed.StatusCode = GlobalVar.ReservationStatus.Canceled
+					DataReservationIsCMConfirmed.BookingCode = reservation.BookingCode
+					DataReservationIsCMConfirmed.OTAID = reservation.OTAID
+					DataReservationIsCMConfirmed.StatusCode = GlobalVar.ReservationStatus.Canceled
 
-					UpdateReservationStatusCancel(ReservationStatus, QueryParam.HotelCode)
-					// // InsertLogUser(LogUserAction.CancelReservation, IntToStr(ReservationNumber), '', '', Reason, LogUserAction.CancelReservationX);
-
+					UpdateReservationStatusCancel(DataReservationStatus, QueryParam.HotelCode)
+					// InsertLogUser(LogUserAction.CancelReservation, IntToStr(ReservationNumber), '', '', Reason, LogUserAction.CancelReservationX);
+					UpdateReservationIsCMConfirmed(DataReservationIsCMConfirmed, QueryParam.HotelCode)
 					// UpdateReservationIsCMConfirmed(reservation.BookingCode, reservation.OTAID, OTAID, 'Cancel', False);
 				}
 			}
 		}
 	}
 
-}
-
-func GetHeader(req *http.Request) *http.Request {
-	// set Header
-	req.Header.Set("Content-Type", "application/json")
-	// TODO Token
-	req.Header.Set("Token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODc1MDM2MzAsInJlZnJlc2giOmZhbHNlLCJ1c2VyIjoiU1lTVEVNIn0.fqA0wHYfmtxhfD13M7zBXOxVan0OxeWY0elzAvGKTxk")
-
-	return req
 }
 
 func GetReservationByBookingCode(HotelCode string, BookingCode string, OTAID string) []MyQReservationStruct {
@@ -385,7 +372,46 @@ func GetReservationByBookingCode(HotelCode string, BookingCode string, OTAID str
 	return ReservationDataArray
 }
 
-func UpdateReservationStatusCancel(DataInput ReservationStatusStruct, HotelCode string) {
+func UpdateContactPerson() {
+
+}
+
+func UpdateGuestDetail() {
+
+}
+
+func UpdateGuestProfile() {
+
+}
+
+func UpdateReservation() {
+
+}
+
+func UpdateReservationIsCMConfirmed(DataInput DataReservationIsCMConfirmedStruct, HotelCode string) {
+	client := &http.Client{}
+	payload, err := json.Marshal(DataInput)
+	if err != nil {
+		fmt.Println("Failed to create request:", err)
+	}
+	fmt.Println(client, payload)
+	// endPoint := fmt.Sprintf(IP + "UpdateReservationStatus/" + HotelCode)
+	// req, err := http.NewRequest("PUT", endPoint, bytes.NewBuffer(payload))
+	// req = GetHeader(req)
+
+	// // Send the request
+	// resp, err := client.Do(req)
+	// if err != nil {
+	// 	fmt.Println("Error sending request:", err)
+	// }
+
+	// defer resp.Body.Close()
+	// if resp.StatusCode != http.StatusOK {
+	// 	fmt.Println("Update request failed with status:", resp.StatusCode)
+	// }
+}
+
+func UpdateReservationStatusCancel(DataInput DataReservationStatusStruct, HotelCode string) {
 	client := &http.Client{}
 	payload, err := json.Marshal(DataInput)
 	if err != nil {
