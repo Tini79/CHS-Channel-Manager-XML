@@ -1,8 +1,11 @@
 package global_query
 
 import (
-	"bytes"
+	DBVar "channel-manager/db_var"
+	General "channel-manager/general"
 	GlobalVar "channel-manager/global_var"
+
+	"bytes"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
@@ -13,38 +16,10 @@ import (
 	"github.com/beevik/etree"
 )
 
-type Array map[string]interface{}
-type MyQReservationStruct struct {
-	Number      int    `json:"number"`
-	OTAID       string `json:"ota_id"`
-	BookingCode string `json:"booking_code"`
-}
-type DataReservationStatusStruct struct {
-	ReservationNumber int    `json:"ReservationNumber"`
-	StatusCode        string `json:"StatusCode"`
-	CancelledBy       string `json:"CancelledBy"`
-	CancelReason      string `json:"CancelReason"`
-}
-type DataReservationIsCMConfirmedStruct struct {
-	BookingCode string `json:"BookingCode"`
-	OTAID       string `json:"OTAID"`
-	StatusCode  string `json:"StatusCode"`
-	False       string `json:"False"`
-}
-
-var DataReservationStatus DataReservationStatusStruct
-var DataReservationIsCMConfirmed DataReservationIsCMConfirmedStruct
-var IP = "http://192.168.1.64:9000/"
-
-func GetHeader(req *http.Request) *http.Request {
-	req.Header.Set("Content-Type", "application/json")
-	// TODO Token
-	req.Header.Set("Token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODc1MDM2MzAsInJlZnJlc2giOmZhbHNlLCJ1c2VyIjoiU1lTVEVNIn0.fqA0wHYfmtxhfD13M7zBXOxVan0OxeWY0elzAvGKTxk")
-
-	return req
-}
-
 func ChannelManager1ReadXML() {
+	var DataReservationStatus DBVar.DataReservationStatusStruct
+	var DataReservationIsCMConfirmed DBVar.DataReservationIsCMConfirmedStruct
+
 	type QueryParamStruct struct {
 		BookingCode string `json:"BookingCode"`
 		OTAID       string `json:"OTAID"`
@@ -177,51 +152,49 @@ func ChannelManager1ReadXML() {
 			// if RoomList.Count > 0 {
 			// BedTypeCode := GetBedTypeCode(RoomList.Strings[0]);
 			// }
-
-			// for _, detailGuest := range DataInput.Details {
-			if RPH == DataInputDetail.ResGuestRPH {
-				// ServerDate := GetServerDate;
-				// ProgramVariable.AuditDate := GetAuditDate;
-				// ProgramConfiguration.CheckOutLimit := StrToTime(ReadConfigurationString(SystemCode.Hotel, ConfigurationCategory.Reservation, ConfigurationName.CheckOutLimit, False), ProgramVariable.FormatSettingX);
-				// ReplaceTime(ArrivalDate, ArrivalTime);
-				// ReplaceTime(DepartureDate, ProgramConfiguration.CheckOutLimit);
-
-				// RoomRateAmount := 0.0
-				// if (DataInput.RoomRateAmountStr != "") && (DataInput.RoomRateAmountStr != "0") {
-				// 	RoomRateAmount, err = strconv.ParseFloat(DataInput.RoomRateAmountStr, 64)
-				// 	if err != nil {
-				// 		fmt.Println(err)
-				// 	}
-				// }
-				// if (DateOf(ArrivalDate) >= DateOf(ProgramVariable.AuditDate)) and (DateOf(DepartureDate) > DateOf(ProgramVariable.AuditDate)) and (GetAvailableRoomCountByType(RoomTypeCode, BedTypeCode, ArrivalDate, DepartureDate, 0, 0, 0, 0, False, ProgramConfiguration.CCMSReservationAsAllotment) > 0) {
-				// GuestProfileID := InsertGuestProfile('', FullName, Street, '', City, '', '', '', PostalCode, Phone1, '', '', Email, '', '', '', '', '', BoolToStr(True), '',  '0000-00-00', CPType.Guest,
-				//                                                    '', '', '', '', '', '', '', '', '', '', '', '',
-				//                                                    '', '', '', '', '', '', '', '', '', '', '', '',
-				//                                                    '', GuestProfileSource.Hotel, ServerDate);
-
-				//               ContactPersonID := InsertContactPerson('', FullName, Street, '', City, '', '', '', PostalCode, Phone1, '', '', Email, '', '', '', '', '', BoolToStr(True), '',  '0000-00-00', CPType.Guest,
-				//                                                    '', '', '', '', '', '', '', '', '', '', '', '',
-				//                                                    '', '', '', '', '', '', '', '', '', '', '', '');
-
-				//               GuestDetailID := InsertGuestDetail(ArrivalDate, DepartureDate, Adult, Child, RoomTypeCode, BedTypeCode, '', RoomRateCode, '', '', '', '', '', '', True, RoomRateAmount, RoomRateAmount, 0, 0);
-				//               ParameterCondition := InsertReservation(ContactPersonID, '', '', '', GuestDetailID, '', GuestProfileID, '', '', '', '', FullName, '', '', ReservationStatus.New, '', '', '', '', '', '', BookingCode, OTAID, ResStatus, 1, NullDate, NullDate, True, False, ProgramConfiguration.CCMSReservationAsAllotment);
-				//               AssignRoom(ParameterCondition, False);
-				// } else {
-				// 				GuestProfileID := InsertGuestProfile('', FullName, Street, '', City, '', '', '', PostalCode, Phone1, '', '', Email, '', '', '', '', '', BoolToStr(True), '',  '0000-00-00', CPType.Guest,
-				// 				'', '', '', '', '', '', '', '', '', '', '', '',
-				// 				'', '', '', '', '', '', '', '', '', '', '', '',
-				// 				'', GuestProfileSource.Hotel, ServerDate);
-
-				// ContactPersonID := InsertContactPerson('', FullName, Street, '', City, '', '', '', PostalCode, Phone1, '', '', Email, '', '', '', '', '', BoolToStr(True), '',  '0000-00-00', CPType.Guest,
-				// 				'', '', '', '', '', '', '', '', '', '', '', '',
-				// 				'', '', '', '', '', '', '', '', '', '', '', '');
-
-				// GuestDetailID := InsertGuestDetail(ArrivalDate, DepartureDate, Adult, Child, RoomTypeCode, BedTypeCode, '', RoomRateCode, '', '', '', '', '', '', True, RoomRateAmount, RoomRateAmount, 0, 0);
-				// ParameterCondition := InsertReservation(ContactPersonID, '', '', '', GuestDetailID, '', GuestProfileID, '', '', '', '', FullName, '', '', ReservationStatus.WaitList, '', '', '', '', '', '', BookingCode, OTAID, ResStatus, 1, NullDate, NullDate, True, False, ProgramConfiguration.CCMSReservationAsAllotment);
-			}
-			// }
 		}
 
+		// for _, detailGuest := range DataInput.Details {
+		if RPH == DataInputDetail.ResGuestRPH {
+			// ServerDate := GetServerDate;
+			// ProgramVariable.AuditDate := GetAuditDate;
+			// ProgramConfiguration.CheckOutLimit := StrToTime(ReadConfigurationString(SystemCode.Hotel, ConfigurationCategory.Reservation, ConfigurationName.CheckOutLimit, False), ProgramVariable.FormatSettingX);
+			// ReplaceTime(ArrivalDate, ArrivalTime);
+			// ReplaceTime(DepartureDate, ProgramConfiguration.CheckOutLimit);
+
+			// RoomRateAmount := 0.0
+			// if (DataInput.RoomRateAmountStr != "") && (DataInput.RoomRateAmountStr != "0") {
+			// 	RoomRateAmount, err = strconv.ParseFloat(DataInput.RoomRateAmountStr, 64)
+			// 	if err != nil {
+			// 		fmt.Println(err)
+			// 	}
+			// }
+			// if (DateOf(ArrivalDate) >= DateOf(ProgramVariable.AuditDate)) and (DateOf(DepartureDate) > DateOf(ProgramVariable.AuditDate)) and (GetAvailableRoomCountByType(RoomTypeCode, BedTypeCode, ArrivalDate, DepartureDate, 0, 0, 0, 0, False, ProgramConfiguration.CCMSReservationAsAllotment) > 0) {
+			// GuestProfileID := InsertGuestProfile('', FullName, Street, '', City, '', '', '', PostalCode, Phone1, '', '', Email, '', '', '', '', '', BoolToStr(True), '',  '0000-00-00', CPType.Guest,
+			//                                                    '', '', '', '', '', '', '', '', '', '', '', '',
+			//                                                    '', '', '', '', '', '', '', '', '', '', '', '',
+			//                                                    '', GuestProfileSource.Hotel, ServerDate);
+
+			//               ContactPersonID := InsertContactPerson('', FullName, Street, '', City, '', '', '', PostalCode, Phone1, '', '', Email, '', '', '', '', '', BoolToStr(True), '',  '0000-00-00', CPType.Guest,
+			//                                                    '', '', '', '', '', '', '', '', '', '', '', '',
+			//                                                    '', '', '', '', '', '', '', '', '', '', '', '');
+
+			//               GuestDetailID := InsertGuestDetail(ArrivalDate, DepartureDate, Adult, Child, RoomTypeCode, BedTypeCode, '', RoomRateCode, '', '', '', '', '', '', True, RoomRateAmount, RoomRateAmount, 0, 0);
+			//               ParameterCondition := InsertReservation(ContactPersonID, '', '', '', GuestDetailID, '', GuestProfileID, '', '', '', '', FullName, '', '', ReservationStatus.New, '', '', '', '', '', '', BookingCode, OTAID, ResStatus, 1, NullDate, NullDate, True, False, ProgramConfiguration.CCMSReservationAsAllotment);
+			//               AssignRoom(ParameterCondition, False);
+			// } else {
+			// 				GuestProfileID := InsertGuestProfile('', FullName, Street, '', City, '', '', '', PostalCode, Phone1, '', '', Email, '', '', '', '', '', BoolToStr(True), '',  '0000-00-00', CPType.Guest,
+			// 				'', '', '', '', '', '', '', '', '', '', '', '',
+			// 				'', '', '', '', '', '', '', '', '', '', '', '',
+			// 				'', GuestProfileSource.Hotel, ServerDate);
+
+			// ContactPersonID := InsertContactPerson('', FullName, Street, '', City, '', '', '', PostalCode, Phone1, '', '', Email, '', '', '', '', '', BoolToStr(True), '',  '0000-00-00', CPType.Guest,
+			// 				'', '', '', '', '', '', '', '', '', '', '', '',
+			// 				'', '', '', '', '', '', '', '', '', '', '', '');
+
+			// GuestDetailID := InsertGuestDetail(ArrivalDate, DepartureDate, Adult, Child, RoomTypeCode, BedTypeCode, '', RoomRateCode, '', '', '', '', '', '', True, RoomRateAmount, RoomRateAmount, 0, 0);
+			// ParameterCondition := InsertReservation(ContactPersonID, '', '', '', GuestDetailID, '', GuestProfileID, '', '', '', '', FullName, '', '', ReservationStatus.WaitList, '', '', '', '', '', '', BookingCode, OTAID, ResStatus, 1, NullDate, NullDate, True, False, ProgramConfiguration.CCMSReservationAsAllotment);
+		}
 	} else {
 		if ResStatus == "Modify" {
 			if RPH != "" {
@@ -309,34 +282,32 @@ func ChannelManager1ReadXML() {
 					DataReservationStatus.StatusCode = GlobalVar.ReservationStatus.Canceled
 					DataReservationStatus.CancelledBy = ""
 					DataReservationStatus.CancelReason = "Cancel by Channel Manager"
+					UpdateReservationStatusCancel(DataReservationStatus, QueryParam.HotelCode)
+
 					// UpdateReservationIsCMConfirmed
 					DataReservationIsCMConfirmed.BookingCode = reservation.BookingCode
 					DataReservationIsCMConfirmed.OTAID = reservation.OTAID
 					DataReservationIsCMConfirmed.StatusCode = GlobalVar.ReservationStatus.Canceled
-
-					UpdateReservationStatusCancel(DataReservationStatus, QueryParam.HotelCode)
-					// InsertLogUser(LogUserAction.CancelReservation, IntToStr(ReservationNumber), '', '', Reason, LogUserAction.CancelReservationX);
 					UpdateReservationIsCMConfirmed(DataReservationIsCMConfirmed, QueryParam.HotelCode)
 					// UpdateReservationIsCMConfirmed(reservation.BookingCode, reservation.OTAID, OTAID, 'Cancel', False);
 				}
 			}
 		}
 	}
-
 }
 
-func GetReservationByBookingCode(HotelCode string, BookingCode string, OTAID string) []MyQReservationStruct {
+func GetReservationByBookingCode(HotelCode string, BookingCode string, OTAID string) []DBVar.MyQReservationStruct {
 	type RawDataStruct struct {
 		Result json.RawMessage `json:"Result"`
 	}
 
-	var ReservationDataArray []MyQReservationStruct
+	var ReservationDataArray []DBVar.MyQReservationStruct
 
 	client := &http.Client{}
-	endPoint := fmt.Sprintf(IP + "GetReservationByBookingCode/" + HotelCode)
+	endPoint := fmt.Sprintf(General.IP + "GetReservationByBookingCode/" + HotelCode)
 	params := url.Values{}
 	params.Set("BookingCode", BookingCode)
-	// TODO buat test
+	// TODO buat test, nanti hapus dan uncomment yg d bwh
 	params.Set("OTAID", "")
 	// params.Set("OTAID", OTAID)
 	url := fmt.Sprintf("%s?%s", endPoint, params.Encode())
@@ -345,7 +316,7 @@ func GetReservationByBookingCode(HotelCode string, BookingCode string, OTAID str
 		fmt.Println("Error creating request:", err)
 	}
 
-	req = GetHeader(req)
+	req = General.GetHeader(req)
 
 	resp, err := client.Do(req)
 	if err != nil {
@@ -353,7 +324,6 @@ func GetReservationByBookingCode(HotelCode string, BookingCode string, OTAID str
 	}
 	defer resp.Body.Close()
 
-	// Read the response body
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
 		fmt.Println("Error reading response:", err)
@@ -372,30 +342,26 @@ func GetReservationByBookingCode(HotelCode string, BookingCode string, OTAID str
 	return ReservationDataArray
 }
 
-func UpdateContactPerson() {
-
+func InsertGuestProfile() uint64 {
+	return 3
 }
 
-func UpdateGuestDetail() {
-
+func InsertContactPerson() uint64 {
+	return 3
 }
 
-func UpdateGuestProfile() {
-
+func InsertGuestDetail() uint64 {
+	return 3
 }
 
-func UpdateReservation() {
-
-}
-
-func UpdateReservationIsCMConfirmed(DataInput DataReservationIsCMConfirmedStruct, HotelCode string) {
+func UpdateContactPerson(DataInput DBVar.DataReservationIsCMConfirmedStruct, HotelCode string) {
 	client := &http.Client{}
 	payload, err := json.Marshal(DataInput)
 	if err != nil {
 		fmt.Println("Failed to create request:", err)
 	}
 	fmt.Println(client, payload)
-	// endPoint := fmt.Sprintf(IP + "UpdateReservationStatus/" + HotelCode)
+	// endPoint := fmt.Sprintf(General.IP + "UpdateReservationStatus/" + HotelCode)
 	// req, err := http.NewRequest("PUT", endPoint, bytes.NewBuffer(payload))
 	// req = GetHeader(req)
 
@@ -411,17 +377,108 @@ func UpdateReservationIsCMConfirmed(DataInput DataReservationIsCMConfirmedStruct
 	// }
 }
 
-func UpdateReservationStatusCancel(DataInput DataReservationStatusStruct, HotelCode string) {
+func UpdateGuestDetail(DataInput DBVar.DataReservationIsCMConfirmedStruct, HotelCode string) {
 	client := &http.Client{}
 	payload, err := json.Marshal(DataInput)
 	if err != nil {
 		fmt.Println("Failed to create request:", err)
 	}
-	endPoint := fmt.Sprintf(IP + "UpdateReservationStatus/" + HotelCode)
-	req, err := http.NewRequest("PUT", endPoint, bytes.NewBuffer(payload))
-	req = GetHeader(req)
+	fmt.Println(client, payload)
+	// endPoint := fmt.Sprintf(General.IP + "UpdateReservationStatus/" + HotelCode)
+	// req, err := http.NewRequest("PUT", endPoint, bytes.NewBuffer(payload))
+	// req = GetHeader(req)
 
-	// Send the request
+	// // Send the request
+	// resp, err := client.Do(req)
+	// if err != nil {
+	// 	fmt.Println("Error sending request:", err)
+	// }
+
+	// defer resp.Body.Close()
+	// if resp.StatusCode != http.StatusOK {
+	// 	fmt.Println("Update request failed with status:", resp.StatusCode)
+	// }
+}
+
+func UpdateGuestProfile(DataInput DBVar.DataReservationIsCMConfirmedStruct, HotelCode string) {
+	client := &http.Client{}
+	payload, err := json.Marshal(DataInput)
+	if err != nil {
+		fmt.Println("Failed to create request:", err)
+	}
+	fmt.Println(client, payload)
+	// endPoint := fmt.Sprintf(General.IP + "UpdateReservationStatus/" + HotelCode)
+	// req, err := http.NewRequest("PUT", endPoint, bytes.NewBuffer(payload))
+	// req = GetHeader(req)
+
+	// // Send the request
+	// resp, err := client.Do(req)
+	// if err != nil {
+	// 	fmt.Println("Error sending request:", err)
+	// }
+
+	// defer resp.Body.Close()
+	// if resp.StatusCode != http.StatusOK {
+	// 	fmt.Println("Update request failed with status:", resp.StatusCode)
+	// }
+}
+
+func UpdateReservation(DataInput DBVar.DataReservationIsCMConfirmedStruct, HotelCode string) {
+	client := &http.Client{}
+	payload, err := json.Marshal(DataInput)
+	if err != nil {
+		fmt.Println("Failed to create request:", err)
+	}
+	fmt.Println(client, payload)
+	// endPoint := fmt.Sprintf(General.IP + "UpdateReservationStatus/" + HotelCode)
+	// req, err := http.NewRequest("PUT", endPoint, bytes.NewBuffer(payload))
+	// req = GetHeader(req)
+
+	// // Send the request
+	// resp, err := client.Do(req)
+	// if err != nil {
+	// 	fmt.Println("Error sending request:", err)
+	// }
+
+	// defer resp.Body.Close()
+	// if resp.StatusCode != http.StatusOK {
+	// 	fmt.Println("Update request failed with status:", resp.StatusCode)
+	// }
+}
+
+func UpdateReservationIsCMConfirmed(DataInput DBVar.DataReservationIsCMConfirmedStruct, HotelCode string) {
+	client := &http.Client{}
+	payload, err := json.Marshal(DataInput)
+	if err != nil {
+		fmt.Println("Failed to create request:", err)
+	}
+	fmt.Println(client, payload)
+	// endPoint := fmt.Sprintf(General.IP + "UpdateReservationStatus/" + HotelCode)
+	// req, err := http.NewRequest("PUT", endPoint, bytes.NewBuffer(payload))
+	// req = GetHeader(req)
+
+	// // Send the request
+	// resp, err := client.Do(req)
+	// if err != nil {
+	// 	fmt.Println("Error sending request:", err)
+	// }
+
+	// defer resp.Body.Close()
+	// if resp.StatusCode != http.StatusOK {
+	// 	fmt.Println("Update request failed with status:", resp.StatusCode)
+	// }
+}
+
+func UpdateReservationStatusCancel(DataInput DBVar.DataReservationStatusStruct, HotelCode string) {
+	client := &http.Client{}
+	payload, err := json.Marshal(DataInput)
+	if err != nil {
+		fmt.Println("Failed to create request:", err)
+	}
+	endPoint := fmt.Sprintf(General.IP + "UpdateReservationStatus/" + HotelCode)
+	req, err := http.NewRequest("PUT", endPoint, bytes.NewBuffer(payload))
+	req = General.GetHeader(req)
+
 	resp, err := client.Do(req)
 	if err != nil {
 		fmt.Println("Error sending request:", err)
