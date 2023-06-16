@@ -7,7 +7,7 @@
 			xmlns="http://www.opentravel.org/OTA/2003/05" TimeStamp="2019-06-18T11:45:41+07:00" Version="1.0">
 			<Success />
 			<ReservationsList>
-				<HotelReservation CreateDateTime="2019-06-17 23:40:07" ResStatus="Cancel">
+				<HotelReservation CreateDateTime="2019-06-17 23:40:07" ResStatus="Modify">
 					<POS>
 						<Source>
 							<RequestorID ID="cakrasoft" Type="22" />
@@ -21,12 +21,12 @@
 							</BookingChannel>
 						</Source>
 					</POS>
-					<UniqueID ID="822914" Type="14" />
-					<UniqueID ID="822914" ID_Context="MESSAGE_UNIQUE_ID" Type="16" />
+					<UniqueID ID="822333" Type="14" />
+					<UniqueID ID="822333" ID_Context="MESSAGE_UNIQUE_ID" Type="16" />
 					<RoomStays>
 						<RoomStay>
 							<RoomTypes>
-								<RoomType RoomType="test room2" RoomTypeCode="11112">
+								<RoomType RoomType="test room2" RoomTypeCode="1111">
 									<RoomDescription>
 										<Text>test room2</Text>
 									</RoomDescription>
@@ -63,38 +63,14 @@
 						</RoomStay>
 					</RoomStays>
 					<ResGuests>
-						<ResGuest ArrivalTime="00:02" PrimaryIndicator="true" ResGuestRPH="1">
+						<ResGuest ArrivalTime="00:00" PrimaryIndicator="true" ResGuestRPH="1">
 							<Profiles>
 								<ProfileInfo>
 									<Profile ProfileType="1">
 										<Customer>
 											<PersonName>
-												<GivenName>CIAH 1111</GivenName>
-												<Surname>CUO</Surname>
-											</PersonName>
-											<Telephone PhoneNumber="0983" />
-											<Email>chhh@bookandlink.com</Email>
-											<Address>
-												<AddressLine>jln marlboro no 40</AddressLine>
-												<CityName>denpasar</CityName>
-												<PostalCode>N/A</PostalCode>
-												<StateProv>BALI</StateProv>
-												<CountryName>Antarctica</CountryName>
-												<CompanyName>BOOKANDLINK</CompanyName>
-											</Address>
-										</Customer>
-									</Profile>
-								</ProfileInfo>
-							</Profiles>
-						</ResGuest>
-            	<ResGuest ArrivalTime="00:00" PrimaryIndicator="true" ResGuestRPH="2">
-							<Profiles>
-								<ProfileInfo>
-									<Profile ProfileType="1">
-										<Customer>
-											<PersonName>
-												<GivenName>PHILILPPE</GivenName>
-												<Surname>RAUNET</Surname>
+												<GivenName>Power</GivenName>
+												<Surname>Ranger Hita</Surname>
 											</PersonName>
 											<Telephone PhoneNumber="098" />
 											<Email>philippe@bookandlink.com</Email>
@@ -136,7 +112,7 @@
 								<Profile ProfileType="1">
 									<Customer>
 										<PersonName>
-											<GivenName>PHILILPPE 1</GivenName>
+											<GivenName>PHILILPPE</GivenName>
 											<Surname>RAUNET</Surname>
 										</PersonName>
 										<Telephone PhoneNumber="098" />

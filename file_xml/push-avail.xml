@@ -1,0 +1,28 @@
+<soap:Envelope
+	xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+	<soap:Header>
+		<wsse:Security soap:mustUnderstand="1"
+			xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd">
+			<wsse:UsernameToken>
+				<wsse:Username>bnl898</wsse:Username>
+				<wsse:Password Type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText">898bnl</wsse:Password>
+			</wsse:UsernameToken>
+		</wsse:Security>
+	</soap:Header>
+	<soap:Body>
+		<OTA_HotelAvailNotifRQ
+			xmlns="http://www.opentravel.org/OTA/2003/05" Version="1.0" TimeStamp="2020-12-27T12:10:00+08:00" EchoToken="2C282F8A-69A3-6408-1FA7-010A16E7ED1F0087">
+			<POS>
+				<Source>
+					<RequestorID Type="22" ID="BNL"/>
+				</Source>
+			</POS>
+			<AvailStatusMessages HotelCode="898">
+				<AvailStatusMessage BookingLimit="94">
+					<StatusApplicationControl Start="2020-12-27" End="2020-12-31" InvTypeCode="SND"/>
+				</AvailStatusMessage>
+			</AvailStatusMessages>
+		</OTA_HotelAvailNotifRQ>
+	</soap:Body>
+</soap:Envelope>
+

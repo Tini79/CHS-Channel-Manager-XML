@@ -1,0 +1,254 @@
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+  <SOAP-ENV:Header />
+  <SOAP-ENV:Body>
+    <OTA_ResRetrieveRS xmlns="http://www.opentravel.org/OTA/2003/05" TimeStamp="2022-07-29T14:11:12+07:00" Version="1.0">
+      <Success />
+      <ReservationsList>
+        <HotelReservation CreateDateTime="2022-07-29 12:15:08" ResStatus="Modify">
+          <POS>
+            <Source>
+              <RequestorID ID="cakrasoft" Type="22" />
+              <BookingChannel Primary="true" Type="7">
+                <CompanyName Code="TRK">TRAVELOKA</CompanyName>
+              </BookingChannel>
+            </Source>
+            <Source>
+              <BookingChannel Primary="false" Type="7">
+                <CompanyName>TRAVELOKA</CompanyName>
+              </BookingChannel>
+            </Source>
+          </POS>
+          <UniqueID ID="5405140" Type="14" />
+          <UniqueID ID="5405140" ID_Context="MESSAGE_UNIQUE_ID" Type="16" />
+          <RoomStays>
+            <RoomStay>
+              <RoomTypes>
+                <RoomType RoomType="Deluxe Spring Twin Breakfast" RoomTypeCode="DSPK#TWIN">
+                  <RoomDescription>
+                    <Text>Deluxe Spring Twin Breakfast</Text>
+                  </RoomDescription>
+                </RoomType>
+              </RoomTypes>
+              <RatePlans>
+                <RatePlan EffectiveDate="2022-07-30" ExpireDate="2022-07-31" RatePlanCode="DSPTBF" />
+              </RatePlans>
+              <RoomRates>
+                <RoomRate NumberOfUnits="1" RatePlanCode="DSPTBF" RoomTypeCode="DSPK#TWIN">
+                  <Rates>
+                    <Rate EffectiveDate="2022-07-30" ExpireDate="2022-07-31" RateTimeUnit="Day" UnitMultiplier="1">
+                      <Base AmountAfterTax="975000" CurrencyCode="IDR" />
+                      <Total AmountAfterTax="975000" CurrencyCode="IDR" />
+                    </Rate>
+                  </Rates>
+                </RoomRate>
+              </RoomRates>
+              <GuestCounts>
+                <GuestCount AgeQualifyingCode="10" Count="2" />
+                <GuestCount AgeQualifyingCode="8" Count="0" />
+              </GuestCounts>
+              <TimeSpan End="2022-07-31" Start="2022-07-30" />
+              <Total AmountAfterTax="975000.00" CurrencyCode="IDR" />
+              <BasicPropertyInfo HotelCode="2936" />
+            </RoomStay>
+          </RoomStays>
+          <ResGuests>
+            <ResGuest ArrivalTime="14:00" PrimaryIndicator="true" ResGuestRPH="1">
+              <Profiles>
+                <ProfileInfo>
+                  <Profile ProfileType="1">
+                    <Customer>
+                      <PersonName>
+                        <GivenName>MONA</GivenName>
+                        <Surname>MURPHY4</Surname>
+                      </PersonName>
+                      <Telephone PhoneNumber="+62-21-2996-6960" />
+                      <Email>ctriphotelreshk@trip.com</Email>
+                      <Address>
+                        <AddressLine>N/A</AddressLine>
+                        <CityName>N/A</CityName>
+                        <PostalCode>N/A</PostalCode>
+                        <StateProv>N/A</StateProv>
+                        <CountryName>Indonesia</CountryName>
+                        <CompanyName>TRAVELOKA</CompanyName>
+                      </Address>
+                    </Customer>
+                  </Profile>
+                </ProfileInfo>
+              </Profiles>
+            </ResGuest>
+          </ResGuests>
+          <ResGlobalInfo>
+            <Guarantee>
+              <GuaranteesAccepted>
+                <GuaranteeAccepted>
+                  <PaymentCard CardCode="N/A" CardNumber="N/A" CardType="N/A" ExpireDate="N/A">
+                    <CardHolderName>N/A</CardHolderName>
+                  </PaymentCard>
+                </GuaranteeAccepted>
+              </GuaranteesAccepted>
+            </Guarantee>
+            <DepositPayments>
+              <GuaranteePayment>
+                <AmountPercent Amount="975000.00" CurrencyCode="IDR" TaxInclusive="true" />
+              </GuaranteePayment>
+            </DepositPayments>
+            <Total AmountAfterTax="975000.00" CurrencyCode="IDR" />
+            <HotelReservationIDs>
+              <HotelReservationID ResID_Type="14" ResID_Value="1065789208" />
+            </HotelReservationIDs>
+            <Profiles>
+              <ProfileInfo>
+                <Profile ProfileType="1">
+                  <Customer>
+                    <PersonName>
+                      <GivenName>Mimin</GivenName>
+                      <Surname>Aleaa</Surname>
+                    </PersonName>
+                    <Telephone PhoneNumber="+62-21-2996-6960" />
+                    <Email>ctriphotelreshk@trip.com</Email>
+                    <Address>
+                      <AddressLine>N/A</AddressLine>
+                      <CityName>N/A</CityName>
+                      <PostalCode>N/A</PostalCode>
+                      <StateProv>N/A</StateProv>
+                      <CountryName>Indonesia</CountryName>
+                      <CompanyName>TRAVELOKA</CompanyName>
+                    </Address>
+                  </Customer>
+                </Profile>
+              </ProfileInfo>
+            </Profiles>
+            <Comments>
+              <Comment>
+                <Text>N/A</Text>
+              </Comment>
+            </Comments>
+          </ResGlobalInfo>
+          <BasicPropertyInfo HotelCode="2936" />
+        </HotelReservation>
+        <HotelReservation CreateDateTime="2022-07-29 12:12:05" ResStatus="Modify">
+          <POS>
+            <Source>
+              <RequestorID ID="cakrasoft" Type="22" />
+              <BookingChannel Primary="true" Type="7">
+                <CompanyName Code="TRK">TRAVELOKA</CompanyName>
+              </BookingChannel>
+            </Source>
+            <Source>
+              <BookingChannel Primary="false" Type="7">
+                <CompanyName>TRAVELOKA</CompanyName>
+              </BookingChannel>
+            </Source>
+          </POS>
+          <UniqueID ID="1065789119" Type="14" />
+          <UniqueID ID="5405113" ID_Context="MESSAGE_UNIQUE_ID" Type="16" />
+          <RoomStays>
+            <RoomStay>
+              <RoomTypes>
+                <RoomType RoomType="Deluxe Summer Twin Breakfast" RoomTypeCode="DSUK#TWIN">
+                  <RoomDescription>
+                    <Text>Deluxe Summer Twin Breakfast</Text>
+                  </RoomDescription>
+                </RoomType>
+              </RoomTypes>
+              <RatePlans>
+                <RatePlan EffectiveDate="2022-07-30" ExpireDate="2022-07-31" RatePlanCode="DSUTBF" />
+              </RatePlans>
+              <RoomRates>
+                <RoomRate NumberOfUnits="1" RatePlanCode="DSUTBF" RoomTypeCode="DSUK#TWIN">
+                  <Rates>
+                    <Rate EffectiveDate="2022-07-30" ExpireDate="2022-07-31" RateTimeUnit="Day" UnitMultiplier="1">
+                      <Base AmountAfterTax="866667" CurrencyCode="IDR" />
+                      <Total AmountAfterTax="866667" CurrencyCode="IDR" />
+                    </Rate>
+                  </Rates>
+                </RoomRate>
+              </RoomRates>
+              <GuestCounts>
+                <GuestCount AgeQualifyingCode="10" Count="2" />
+                <GuestCount AgeQualifyingCode="8" Count="0" />
+              </GuestCounts>
+              <TimeSpan End="2022-07-31" Start="2022-07-30" />
+              <Total AmountAfterTax="866667.00" CurrencyCode="IDR" />
+              <BasicPropertyInfo HotelCode="2936" />
+            </RoomStay>
+          </RoomStays>
+          <ResGuests>
+            <ResGuest ArrivalTime="14:00" PrimaryIndicator="true" ResGuestRPH="1">
+              <Profiles>
+                <ProfileInfo>
+                  <Profile ProfileType="1">
+                    <Customer>
+                      <PersonName>
+                        <GivenName>Angel</GivenName>
+                        <Surname>Ciahhhh</Surname>
+                      </PersonName>
+                      <Telephone PhoneNumber="13578748874" />
+                      <Email>partner@ssbooking.cn</Email>
+                      <Address>
+                        <AddressLine>N/A</AddressLine>
+                        <CityName>N/A</CityName>
+                        <PostalCode>N/A</PostalCode>
+                        <StateProv>N/A</StateProv>
+                        <CountryName>Indonesia</CountryName>
+                        <CompanyName>TRAVELOKA</CompanyName>
+                      </Address>
+                    </Customer>
+                  </Profile>
+                </ProfileInfo>
+              </Profiles>
+            </ResGuest>
+          </ResGuests>
+          <ResGlobalInfo>
+            <Guarantee>
+              <GuaranteesAccepted>
+                <GuaranteeAccepted>
+                  <PaymentCard CardCode="N/A" CardNumber="N/A" CardType="N/A" ExpireDate="N/A">
+                    <CardHolderName>N/A</CardHolderName>
+                  </PaymentCard>
+                </GuaranteeAccepted>
+              </GuaranteesAccepted>
+            </Guarantee>
+            <DepositPayments>
+              <GuaranteePayment>
+                <AmountPercent Amount="866667.00" CurrencyCode="IDR" TaxInclusive="true" />
+              </GuaranteePayment>
+            </DepositPayments>
+            <Total AmountAfterTax="866667.00" CurrencyCode="IDR" />
+            <HotelReservationIDs>
+              <HotelReservationID ResID_Type="14" ResID_Value="1065789119" />
+            </HotelReservationIDs>
+            <Profiles>
+              <ProfileInfo>
+                <Profile ProfileType="1">
+                  <Customer>
+                    <PersonName>
+                      <GivenName>MONA</GivenName>
+                      <Surname>MURPHY2</Surname>
+                    </PersonName>
+                    <Telephone PhoneNumber="13578748874" />
+                    <Email>partner@ssbooking.cn</Email>
+                    <Address>
+                      <AddressLine>N/A</AddressLine>
+                      <CityName>N/A</CityName>
+                      <PostalCode>N/A</PostalCode>
+                      <StateProv>N/A</StateProv>
+                      <CountryName>Indonesia</CountryName>
+                      <CompanyName>TRAVELOKA</CompanyName>
+                    </Address>
+                  </Customer>
+                </Profile>
+              </ProfileInfo>
+            </Profiles>
+            <Comments>
+              <Comment>
+                <Text>Others (NonSmoke, TwinBeds)</Text>
+              </Comment>
+            </Comments>
+          </ResGlobalInfo>
+          <BasicPropertyInfo HotelCode="2936" />
+        </HotelReservation>
+      </ReservationsList>
+    </OTA_ResRetrieveRS>
+  </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

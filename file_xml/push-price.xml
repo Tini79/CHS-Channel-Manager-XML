@@ -1,0 +1,35 @@
+<soap:Envelope
+	xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+	<soap:Header>
+		<wsse:Security soap:mustUnderstand="1"
+			xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd">
+			<wsse:UsernameToken>
+				<wsse:Username>bnl898</wsse:Username>
+				<wsse:Password Type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText">898bnl</wsse:Password>
+			</wsse:UsernameToken>
+		</wsse:Security>
+	</soap:Header>
+	<soap:Body>
+		<OTA_HotelRateAmountNotifRQ
+			xmlns="http://www.opentravel.org/OTA/2003/05" TimeStamp="2020-12-27T10:54:42+08:00" Version="1.0" EchoToken="4C2E83E6-5428-4FE1-2525-0D3939DB369D095F">
+			<POS>
+				<Source>
+					<RequestorID Type="22" ID="BNL"/>
+				</Source>
+			</POS>
+			<RateAmountMessages HotelCode="898">
+				<RateAmountMessage>
+					<StatusApplicationControl InvTypeCode="LVD" RatePlanCode="LVDP"/>
+					<Rates>
+						<Rate CurrencyCode="IDR" Start="2020-12-27" End="2020-12-31" Mon="1" Tue="1" Weds="1" Thur="1" Fri="1" Sat="1" Sun="1">
+							<BaseByGuestAmts>
+								<BaseByGuestAmt AmountAfterTax="780000"/>
+							</BaseByGuestAmts>
+						</Rate>
+					</Rates>
+				</RateAmountMessage>
+			</RateAmountMessages>
+		</OTA_HotelRateAmountNotifRQ>
+	</soap:Body>
+</soap:Envelope>
+

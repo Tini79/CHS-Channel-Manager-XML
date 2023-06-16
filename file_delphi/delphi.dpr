@@ -659,7 +659,7 @@ begin
                                                              '', '', '', '', '', '', '', '', '', '', '', '');
 
                         GuestDetailID := InsertGuestDetail(ArrivalDate, DepartureDate, Adult, Child, RoomTypeCode, BedTypeCode, '', RoomRateCode, '', '', '', '', '', '', True, RoomRateAmount, RoomRateAmount, 0, 0);
-                        ParameterCondition := InsertReservation(ContactPersonID, '', '', '', GuestDetailID, '', GuestProfileID, '', '', '', '', FullName, '', '', ReservationStatus.New, '', '', '', '', '', '', BookingCode, OTAID, ResStatus, 1, NullDate, NullDate, True, False, ProgramConfiguration.CCMSReservationAsAllotment);
+                        ParameterCondition :=   (ContactPersonID, '', '', '', GuestDetailID, '', GuestProfileID, '', '', '', '', FullName, '', '', ReservationStatus.New, '', '', '', '', '', '', BookingCode, OTAID, ResStatus, 1, NullDate, NullDate, True, False, ProgramConfiguration.CCMSReservationAsAllotment);
                         AssignRoom(ParameterCondition, False);
                        end
                       else
