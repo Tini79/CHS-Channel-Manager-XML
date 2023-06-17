@@ -14,6 +14,7 @@ type DataCancelReservationStruct struct {
 }
 
 type DataInsertReservationStruct struct {
+	// Vendor            string    `json:"vendor"`
 	BookingCode       string    `json:"booking_code"`
 	OTAID             string    `json:"ota_id"`
 	ArrivalTimeStr    string    `json:"arrival_time_str"`
@@ -54,3 +55,9 @@ type DataUpdateReservationStruct struct {
 	RoomRateCode      string    `json:"room_rate_code"`
 }
 
+type DataReservationIsCMConfirmedStruct struct {
+	IsCmConfirmed bool   `json:"is_cm_confirmed"`
+	BookingCode   string `json:"booking_code"`
+	OTAID         string `json:"ota_id"`
+	ResStatus     string
+}
